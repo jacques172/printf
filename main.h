@@ -1,30 +1,50 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-#include <stdarg.h>
-#include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
-#include <limits.h>
-#include <string.h>
+#include <stdarg.h>
+
+/* utils.c */
+int _strlen(const char *);
+int print(char *);
+char *itoa(long int, int);
+
+/* printf.c */
+int _printf(const char *, ...);
+
+/* handler.c */
+int handler(const char *, va_list);
+int percent_handler(const char *, va_list, int *);
+
+/* printers */
+int print_string(va_list);
+int print_char(va_list);
+int print_integer(va_list);
+int print_binary(va_list);
+int print_rot(va_list);
+int print_unsigned(va_list);
+int print_octal(va_list);
+int print_hexadecimal_low(va_list);
+int print_hexadecimal_upp(va_list);
+int print_pointer(va_list);
+int print_rev_string(va_list);
+
+/* _putchar.c */
+int _putchar(char);
+int buffer(char);
 
 /**
- * struct func_type - type structure
- * @t: pointer to the argument
- * @f: pointer-function associated with the argument
- */
-typedef struct func_type
+ * struct _format - Typedef struct
+ *
+ * @type: Format
+ * @f: The function associated
+ **/
+typedef struct _format
 {
-	char *t;
+	char type;
 	int (*f)(va_list);
-} func_t;
+} format;
 
-int (*get_func(const char *format))(va_list);
-int _putchar(char c);
-int _printf(const char *format, ...);
-int print_str(va_list args);
-int print_char(va_list args);
-int print_pct(va_list args);
-int print_dec(va_list args);
 
 #endif
